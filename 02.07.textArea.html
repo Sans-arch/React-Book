@@ -21,6 +21,8 @@
 
         // Set initial state
         this.state = {};
+        // Binding methods
+        this.onTextChange = this.onTextChange.bind(this);
       }
 
       onTextChange(event) {
@@ -36,7 +38,7 @@
           <div>
             <textarea 
               value={text}
-              onChange={event => this.onTextChange(event)}
+              onChange={this.onTextChange}
             />
             <h3>{text.length}</h3>
           </div>
