@@ -40,7 +40,12 @@
       }
 
       // Irá rodar quando o componente for atualizado (mudança de state ou prop)
-      componentDidUpdate(prevProps, prevState, snapshot) {
+      componentDidUpdate(prevProps, prevState) {
+        if (this.state.text.length > 3) {
+          this.setState({
+            text: prevState.text || this.props.text,
+          });
+        }
         console.log('componentDidUpdate\n', prevProps, prevState, snapshot);
       }
 
@@ -48,11 +53,6 @@
       componentWillUnmount() {
         console.log('componentWillUnmount');
       }
-
-
-
-
-
 
       onTextChange = (event) => {
         this.setState({
