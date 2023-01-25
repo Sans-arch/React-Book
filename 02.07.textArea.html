@@ -18,14 +18,43 @@
     class TextAreaCounter extends React.Component {
       constructor(props) {
         super(props);
-
         // Set initial state
         this.state = {};
-        // Binding methods
-        this.onTextChange = this.onTextChange.bind(this);
       }
 
-      onTextChange(event) {
+      // Irá rodar quando o componente for montado na DOM
+      componentDidMount() {
+        console.log('componentDidMount');
+      }
+
+      // Irá rodar logo após o componentDidMount(), verifica se um componente deve ser re-renderizado ou não
+      shouldComponentUpdate(newProps, newState) {
+        console.log('shouldComponentUpdate\n', newProps, newState);
+        return true;
+      }
+
+      // Irá rodar momentos antes do componente for atualizado (componentDidUpdate)
+      getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log('getSnapshotBeforeUpdate\n', prevProps, prevState);
+        return 'hello';
+      }
+
+      // Irá rodar quando o componente for atualizado (mudança de state ou prop)
+      componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('componentDidUpdate\n', prevProps, prevState, snapshot);
+      }
+
+      // Irá rodar quando o componente for desmontado (ser removido da DOM)
+      componentWillUnmount() {
+        console.log('componentWillUnmount');
+      }
+
+
+
+
+
+
+      onTextChange = (event) => {
         this.setState({
           text: event.target.value,
         });
